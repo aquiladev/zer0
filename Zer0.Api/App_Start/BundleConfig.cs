@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace Zer0
+namespace Zer0.Api
 {
 	public class BundleConfig
 	{

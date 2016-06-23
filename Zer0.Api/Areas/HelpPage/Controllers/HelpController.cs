@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Zer0.Areas.HelpPage.ModelDescriptions;
-using Zer0.Areas.HelpPage.Models;
+using Zer0.Api.Areas.HelpPage.ModelDescriptions;
+using Zer0.Api.Areas.HelpPage.Models;
 
-namespace Zer0.Areas.HelpPage.Controllers
+namespace Zer0.Api.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

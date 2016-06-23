@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
+using Zer0.Commands;
 
 namespace Zer0.Agent
 {
@@ -20,15 +21,14 @@ namespace Zer0.Agent
 		private void Run()
 		{
 			Console.WriteLine("Start");
-			var task = TrackServer(new CancellationToken());
+			var syncServerTask = SetTimerTask(() => { _queue.Enqueue(new SyncServerCommand()); }, ServerTrackInterval, new CancellationToken());
 
 			while (true)
 			{
 				ICommand value;
 				if (_queue.TryDequeue(out value))
 				{
-					value.Execute();
-					Console.WriteLine($"{DateTime.Now} {value.Name}");
+					value.Execute(_queue);
 				}
 				else
 				{
@@ -38,25 +38,24 @@ namespace Zer0.Agent
 			}
 		}
 
-		private Task TrackServer(CancellationToken cancellationToken)
+		private Task SetTimerTask(Action act, int interval, CancellationToken cancellationToken)
 		{
 			return Task.Run(() =>
 			{
-				Timer _timer = null;
-				_timer = new Timer(_ =>
+				Timer timer = null;
+				timer = new Timer(_ =>
 				{
-					_timer.Change(Timeout.Infinite, Timeout.Infinite);
+					timer.Change(Timeout.Infinite, Timeout.Infinite);
 					try
 					{
-						//Console.Out.WriteLine("Check server command " + DateTime.Now);
-						_queue.Enqueue(new CheckServerCommand());
+						act?.Invoke();
 					}
 					finally
 					{
-						_timer.Change(ServerTrackInterval, ServerTrackInterval);
+						timer.Change(interval, interval);
 					}
 				}, null, Timeout.Infinite, Timeout.Infinite);
-				_timer.Change(0, ServerTrackInterval);
+				timer.Change(0, interval);
 
 			}, cancellationToken);
 		}

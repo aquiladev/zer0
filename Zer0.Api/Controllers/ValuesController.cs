@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 
-namespace Zer0.Controllers
+namespace Zer0.Api.Controllers
 {
 	public class ValuesController : ApiController
 	{

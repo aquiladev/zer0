@@ -13,7 +13,7 @@ using System.Web.Http.Description;
 using System.Xml.Linq;
 using Newtonsoft.Json;
 
-namespace Zer0.Areas.HelpPage
+namespace Zer0.Api.Areas.HelpPage
 {
     /// <summary>
     /// This class will generate the samples for the help page.

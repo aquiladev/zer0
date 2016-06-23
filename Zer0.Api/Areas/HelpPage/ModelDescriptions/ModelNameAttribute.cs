@@ -1,6 +1,6 @@
 using System;
 
-namespace Zer0.Areas.HelpPage.ModelDescriptions
+namespace Zer0.Api.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Use this attribute to change the name of the <see cref="ModelDescription"/> generated for a type.

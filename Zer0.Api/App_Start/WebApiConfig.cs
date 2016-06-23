@@ -1,14 +1,12 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json.Serialization;
 
-namespace Zer0
+namespace Zer0.Api
 {
 	public static class WebApiConfig
 	{
 		public static void Register(HttpConfiguration config)
 		{
-			// Web API configuration and services
-
-			// Web API routes
 			config.MapHttpAttributeRoutes();
 
 			config.Routes.MapHttpRoute(
@@ -16,6 +14,8 @@ namespace Zer0
 				routeTemplate: "api/{controller}/{id}",
 				defaults: new { id = RouteParameter.Optional }
 			);
+
+			config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 		}
 	}
 }

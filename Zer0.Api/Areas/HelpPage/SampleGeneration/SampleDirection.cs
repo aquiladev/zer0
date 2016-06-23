@@ -1,4 +1,4 @@
-namespace Zer0.Areas.HelpPage
+namespace Zer0.Api.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response
