@@ -8,10 +8,10 @@ namespace Zer0
 	{
 		private static readonly Dictionary<string, Type> Container = new Dictionary<string, Type>
 		{
-			{"SyncServerCommand", typeof(SyncServerCommand)},
+			{"PullCommand", typeof(PullCommand)},
 			{"FetchCountersCommand", typeof(FetchCountersCommand)},
-			{"StartResourceMonitorCommand", typeof(StartResourceMonitorCommand)},
-			{"StopResourceMonitorCommand", typeof(StopResourceMonitorCommand)}
+			{"StartMonitorCommand", typeof(StartMonitorCommand)},
+			{"StopMonitorCommand", typeof(StopMonitorCommand)}
 		};
 
 		public static Type GetType(string name)

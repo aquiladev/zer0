@@ -3,9 +3,9 @@ using System.Collections.Concurrent;
 
 namespace Zer0.Commands
 {
-	public class StopResourceMonitorCommand : ICommand
+	public class StopMonitorCommand : ICommand
 	{
-		public string Name => "StopResourceMonitorCommand";
+		public string Name => "StopMonitorCommand";
 
 		public void Execute(ConcurrentQueue<ICommand> queue)
 		{

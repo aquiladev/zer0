@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace Zer0.Commands
 {
-	public class SyncServerCommand : ICommand
+	public class PullCommand : ICommand
 	{
-		public string Name => "SyncServerCommand";
+		public string Name => "PullCommand";
 
 		public async void Execute(ConcurrentQueue<ICommand> queue)
 		{
@@ -16,7 +16,7 @@ namespace Zer0.Commands
 			using (var client = new HttpClient())
 			using (var response = await client.GetAsync($"http://localhost:19094/api/agent/commands/{hostName}"))
 			{
-				Console.Out.WriteLine("Sync with server");
+				Console.Out.WriteLine("Pull from server");
 				try
 				{
 					response.EnsureSuccessStatusCode();

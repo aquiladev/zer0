@@ -26,7 +26,7 @@ namespace Zer0.Api.Areas.Agent.Controllers
 			{
 				return null;
 			}
-			return new StartResourceMonitorCommand();
+			return new StartMonitorCommand();
 		}
 	}
 }

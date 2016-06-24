@@ -72,13 +72,13 @@
     <Compile Include="Azure\AsyncHelper.cs" />
     <Compile Include="Azure\ITableStorageRepository.cs" />
     <Compile Include="Azure\TableStorageRepository.cs" />
-    <Compile Include="Commands\SyncServerCommand.cs" />
+    <Compile Include="Commands\PullCommand.cs" />
     <Compile Include="Commands\CommandMeta.cs" />
     <Compile Include="Commands\FetchCountersCommand.cs" />
-    <Compile Include="Commands\StopResourceMonitorCommand.cs" />
+    <Compile Include="Commands\StopMonitorCommand.cs" />
     <Compile Include="CommandTypeFactory.cs" />
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\StartResourceMonitorCommand.cs" />
+    <Compile Include="Commands\StartMonitorCommand.cs" />
     <Compile Include="Domain\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
