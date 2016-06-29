@@ -6,8 +6,16 @@ namespace Zer0.Api.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewBag.Title = "Home Page";
+			return View();
+		}
 
+		public ActionResult TestRuns()
+		{
+			return View();
+		}
+
+		public ActionResult Comment()
+		{
 			return View();
 		}
 	}

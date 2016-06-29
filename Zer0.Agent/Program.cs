@@ -21,7 +21,7 @@ namespace Zer0.Agent
 		private void Run()
 		{
 			Console.WriteLine("Start");
-			var syncServerTask = SetTimerTask(() => { _queue.Enqueue(new PullCommand()); }, ServerTrackInterval, new CancellationToken());
+			var pullTask = SetTimerTask(() => { _queue.Enqueue(new PullCommand()); }, ServerTrackInterval, new CancellationToken());
 
 			while (true)
 			{
