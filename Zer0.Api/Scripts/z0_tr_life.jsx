@@ -6,13 +6,13 @@
 		this.renderChart();
 	},
 	trimTokens: function(str) {
-		var outstr = '',
+		var outstr = "",
 			start = -1,
 			end;
-		while ((end = str.indexOf('[', ++start)) > -1) {
+		while ((end = str.indexOf("[", ++start)) > -1) {
 			outstr += str.slice(start, end);
 			start = end;
-			if ((end = str.indexOf(']', start)) > -1) {
+			if ((end = str.indexOf("]", start)) > -1) {
 				outstr += "";
 				start = end;
 			}
@@ -24,10 +24,9 @@
 			.toDate()
 			.getTime();
 	},
-	getData: function () {
+	parse: function (logs) {
 		var data = [];
 		var groups = {};
-		var logs = this.props.data.logEntries;
 		for (var i = 0; i < logs.length; i++) {
 			var topic = this.trimTokens(logs[i].message);
 			if (!groups[topic]) {
@@ -64,36 +63,43 @@
 		return data;
 	},
 	renderChart: function() {
-		var data = this.getData();
-		$('.lifeChart')
+		var data = this.parse(this.props.data.logEntries);
+		$(".lifeChart")
 			.highcharts({
 				chart: {
-					type: 'columnrange',
+					type: "columnrange",
 					inverted: true,
 					height: 150
 				},
 				title: {
-					text: '',
+					text: "",
 					style: {
-						display: 'none'
+						display: "none"
 					}
 				},
 				subtitle: {
-					text: '',
+					text: "",
 					style: {
-						display: 'none'
+						display: "none"
 					}
 				},
 				scrollbar: {
 					enabled: true
 				},
 				xAxis: {
-					categories: ['Stage']
+					categories: ["Stage"]
 				},
 				yAxis: {
-					type: 'datetime',
+					type: "datetime",
 					title: {
-						text: 'Time'
+						text: "Time"
+					},
+					labels: {
+						rotation: -30,
+						style: {
+							fontSize: '10px',
+							fontFamily: 'Verdana, sans-serif'
+						}
 					}
 				},
 				plotOptions: {
@@ -107,9 +113,9 @@
 				},
 				tooltip: {
 					formatter: function () {
-						return '<b>' + this.point.options.logLevel + ': ' + this.point.options.message + '</b><br/>'
-							+ 'Started: ' + moment(this.point.low).format('LTS') + '<br/>'
-							+ 'Completed: ' + moment(this.point.high).format('LTS');
+						return "<b>" + this.point.options.logLevel + ": " + this.point.options.message + "</b><br/>"
+							+ "Started: " + moment(this.point.low).format("LTS") + "<br/>"
+							+ "Completed: " + moment(this.point.high).format("LTS");
 					}
 				},
 				series: data

@@ -436,8 +436,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cytoscape.js" />
+    <Content Include="Scripts\cytoscape.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\math.js" />
+    <Content Include="Scripts\math.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -450,6 +454,7 @@
     <Content Include="Scripts\z0_tr_life.jsx" />
     <Content Include="Scripts\z0_tc_agent.jsx" />
     <Content Include="Scripts\z0_tc_longest.jsx" />
+    <Content Include="Scripts\z0_trx_agents.jsx" />
     <None Include="Scripts\z0_tc_timeline.jsx" />
     <Content Include="Scripts\z0_tr.jsx" />
     <None Include="Scripts\z0_comment.jsx" />
@@ -470,6 +475,10 @@
     <Content Include="Views\Home\Comment.cshtml" />
     <Content Include="Views\Home\TestRuns.cshtml" />
     <Content Include="Scripts\z0_search_box.jsx" />
+    <Content Include="Scripts\z0_tcx_failures.jsx" />
+    <Content Include="Scripts\z0_tcx_deviation.jsx" />
+    <Content Include="Scripts\z0_trx_duration.jsx" />
+    <Content Include="Scripts\z0_trx_sequence_execution.jsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zer0\Zer0.csproj">

@@ -3,9 +3,9 @@
 		var diff = moment(completeDate).diff(moment(startDate));
 		return moment.duration(diff);
 	},
-	getData: function () {
+	parse: function (results) {
 		var self = this;
-		var data = this.props.data.results.map(function (r, i) {
+		var data = results.map(function (r) {
 			return {
 				id: r.testCaseId,
 				title: r.testCaseTitle,
@@ -20,19 +20,20 @@
 			if (a.duration < b.duration) {
 				return 1;
 			}
-			// a must be equal to b
 			return 0;
 		});
 		return data;
 	},
 	render: function () {
-		var data = this.getData();
-		var count = Math.min(data.length, 20);
-		var rows = data.slice(0, count)
+		var cases = this.parse(this.props.data.results);
+		var displayCount = Math.min(cases.length, 20);
+		var rows = cases.slice(0, displayCount)
 			.map(function (r, i) {
 				return (
 					<tr key={i}>
-						<td>{r.id}: {r.title}</td>
+						<td>{i}</td>
+						<td>{r.id}</td>
+						<td className="title">{r.title}</td>
 						<td>{moment.utc(r.duration).format("HH:mm:ss.SSS")}</td>
 					</tr>
 				);
@@ -44,7 +45,9 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Test case</th>
+								<th>#</th>
+								<th>Id</th>
+								<th>Title</th>
 								<th>Duration</th>
 							</tr>
 						</thead>

@@ -125,49 +125,177 @@ textarea {
 			background-size: 92px 2541px;
 		}
 
+.cP {
+	margin-top: 4px;
+	padding-bottom: 9px;
+}
+
+	.cP .cP-c {
+		display: inline-block;
+		position: relative;
+		display: -moz-inline-box;
+		display: inline-block;
+	}
+
+	.cP .cP-ch .cP-chC {
+		-webkit-user-select: none;
+		background-color: transparent;
+		background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+		background-image: linear-gradient(top,#f5f5f5,#f1f1f1);
+		background-image: -webkit-gradient(linear,left top,left bottom,from(#f5f5f5),to(#f1f1f1));
+		background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+		border: 1px solid rgba(0,0,0,0.1);
+		color: #444;
+		border-radius: 2px;
+		cursor: default;
+		font-size: 11px;
+		font-weight: bold;
+		text-align: center;
+		white-space: nowrap;
+		margin-right: 16px;
+		height: 27px;
+		line-height: 27px;
+		min-width: 54px;
+		outline: 0;
+		padding: 0 8px;
+	}
+
+		.cP .cP-ch .cP-chC input[type="checkbox"] {
+			margin-top: 6px;
+		}
+
+.title {
+	-moz-word-break: break-all;
+	-o-word-break: break-all;
+	word-break: break-all;
+}
+
 .testRunBox .col-xs-3,
 .testRunBox .col-xs-9 {
 	padding-top: 10px;
 }
 
-.testRunList {
-	background: #f1f1f1;
+.testRunListItems {
 	border-top: 1px solid #cdcdcd;
-	border-left: 1px solid #cdcdcd;
-	border-color: rgba(0,0,0,.15);
 }
 
-	.testRunList .testRun {
-		padding: 7px 10px;
-		cursor: pointer;
-		border-bottom: 1px solid #cdcdcd;
+.testRunItem {
+	background: #f1f1f1;
+	padding: 7px 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #cdcdcd;
+}
+
+	.testRunItem:hover {
+		background: #fff;
 	}
 
-		.testRunList .testRun:hover {
-			background: #fff;
+	.testRunItem.active {
+		background: #fff;
+	}
+
+	.testRunItem .testRunItemState {
+		margin: 0 6px;
+		width: 12px;
+		height: 12px;
+		-webkit-border-radius: 6px;
+		-ms-border-radius: 6px;
+		border-radius: 6px;
+	}
+
+		.testRunItem .testRunItemState.in-progress {
+			background: #4585f2;
 		}
 
-		.testRunList .testRun.selected {
-			background: #fff;
+		.testRunItem .testRunItemState.completed {
+			background: #30983f;
+		}
+
+		.testRunItem .testRunItemState.waiting {
+			background: #ffd76e;
+		}
+
+		.testRunItem .testRunItemState.need-attention {
+			background: #ea2117;
 		}
 
 .testRunDashboard {
 	border-top: 1px solid #cdcdcd;
 }
 
-.testRunDashboard h3 {
-	margin: 10px 0;
-	border-bottom: 1px solid #cdcdcd;
-}
+	.testRunDashboard h3 {
+		margin: 10px 0;
+		border-bottom: 1px solid #cdcdcd;
+	}
+
+	.testRunDashboard table {
+		width: 100%;
+	}
+
+		.testRunDashboard table .title {
+			-moz-word-break: break-all;
+			-o-word-break: break-all;
+			word-break: break-all;
+		}
+
+		.testRunDashboard table td {
+			padding-right: 10px;
+		}
 
 .testRunInfo table {
 	width: 100%;
 }
 
-.testRunInfo > table td {
+.testRunInfo > table tr {
 	width: 50%;
 }
 
 .testRunInfo .infoValue {
 	font-weight: bold;
 }
+
+.testCasesFailures .row {
+	background: #f1f1f1;
+	padding: 4px 0;
+	border-bottom: 1px solid #cdcdcd;
+}
+
+.testCasesFailures td {
+	padding: 3px 0;
+}
+
+.testCasesFailures .details {
+	display: none;
+}
+
+	.testCasesFailures .details div {
+		padding: 4px 10px;
+		border-bottom: 1px dashed #cdcdcd;
+		font-size: 11px;
+	}
+
+	.testCasesFailures .details .content {
+		border-left: 1px solid #cdcdcd;
+	}
+
+.testCasesFailures .expander {
+	padding-top: 8px;
+	width: 16px;
+	vertical-align: top;
+	cursor: pointer;
+}
+
+	.testCasesFailures .expander .expand {
+		width: 16px;
+		height: 16px;
+		margin-left: 2px;
+		background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -7984px -16px !important;
+	}
+
+	.testCasesFailures .expander .collapse {
+		width: 16px;
+		height: 16px;
+		margin-left: 2px;
+		display: block;
+		background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -8016px -16px !important;
+	}

@@ -21,7 +21,8 @@ namespace Zer0.Api
 
 			bundles.Add(new ScriptBundle("~/bundles/tools").Include(
 				"~/Scripts/moment.js",
-				"~/Scripts/react-chartjs.js"));
+				"~/Scripts/math.js",
+				"~/Scripts/cytoscape.js"));
 
 			bundles.Add(new StyleBundle("~/content/css").Include(
 				"~/Content/bootstrap.css",

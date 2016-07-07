@@ -21,10 +21,9 @@
 		}
 		return amounts;
 	},
-	parseData: function() {
+	parse: function (results) {
 		var agents = {};
 		var outcomes = {};
-		var results = this.props.data.results;
 		for (var i = 0; i < results.length; i++) {
 			var agentName = results[i].computerName;
 			if (!agents[agentName]) {
@@ -75,10 +74,10 @@
 				series.push({
 					name: item,
 					data: data.outcomes[item],
-					color: item === 'Failed' ? '#ff0000' :
-						item === 'Passed' ? '#90ed7d' : '',
-					index: item === 'Failed' ? 1 :
-						item === 'Passed' ? 0 : 2
+					color: item === "Failed" ? "#ea2117" :
+						item === "Passed" ? "#90ed7d" : "",
+					index: item === "Failed" ? 1 :
+						item === "Passed" ? 0 : 2
 				});
 			}
 		}
@@ -86,33 +85,39 @@
 		return series;
 	},
 	renderChart: function () {
-		var data = this.parseData();
+		var data = this.parse(this.props.data.results);
 		var categories = this.getCategories(data);
 		var series = this.getSeries(data);
 
-		$('.casesPerAgentChart').highcharts({
+		$(".casesPerAgentChart").highcharts({
 			chart: {
-				type: 'column'
+				type: "column"
 			},
 			title: {
-				text: '',
+				text: "",
 				style: {
-					display: 'none'
+					display: "none"
 				}
 			},
 			xAxis: {
-				categories: categories
+				categories: categories,
+				labels: {
+					rotation: -30,
+					style: {
+						fontSize: '10px',
+						fontFamily: 'Verdana, sans-serif'
+					}
+				}
 			},
 			yAxis: {
-				min: 0,
 				title: {
-					text: 'Test case amount'
+					text: "Test case amount"
 				},
 				stackLabels: {
 					enabled: true,
 					style: {
-						fontWeight: 'bold',
-						color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+						fontWeight: "bold",
+						color: (Highcharts.theme && Highcharts.theme.textColor) || "gray"
 					}
 				}
 			},
@@ -120,17 +125,17 @@
 				enabled: false
 			},
 			tooltip: {
-				headerFormat: '<b>{point.x}</b><br/>',
-				pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+				headerFormat: "<b>{point.x}</b><br/>",
+				pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}"
 			},
 			plotOptions: {
 				column: {
-					stacking: 'normal',
+					stacking: "normal",
 					dataLabels: {
 						enabled: true,
-						color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+						color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || "white",
 						style: {
-							textShadow: '0 0 3px black'
+							textShadow: "0 0 3px black"
 						}
 					},
 					animation: false
@@ -140,11 +145,6 @@
 		});
 	},
 	render: function () {
-		Highcharts.setOptions({
-			global: {
-				useUTC: false
-			}
-		});
 		return (
 			<div className="testCasesPerAgent">
 				<h3>Amount of test cases per agent</h3>

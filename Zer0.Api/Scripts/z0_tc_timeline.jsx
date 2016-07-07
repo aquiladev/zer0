@@ -10,16 +10,15 @@
 			.toDate()
 			.getTime();
 	},
-	getData: function () {
+	parse: function (data) {
 		var self = this;
-		var data = this.props.data;
 		return data.results.map(function (r, i) {
 			var item = {
 				x: i,
 				id: r.testCaseId,
 				title: r.testCaseTitle,
 				duration: r.duration,
-				color: r.outcome === "Failed" ? '#ff0000' : '#90ed7d'
+				color: r.outcome === "Failed" ? "#ea2117" : "#90ed7d"
 			};
 			var dateStarted = self.getTime(r.dateStarted);
 			if (dateStarted > 0) {
@@ -28,44 +27,51 @@
 			} else {
 				item.low = self.getTime(data.dateStarted);
 				item.high = self.getTime(data.dateCompleted);
-				item.color = '#cdcdcd';
+				item.color = "#cdcdcd";
 			}
 			return item;
 		});
 	},
 	renderChart: function () {
-		var data = this.getData();
-		console.log(data);
-		var height = +(data.length * 2.5);
-		$('.timelineChart')
+		var data = this.parse(this.props.data);
+		//console.log(data);
+		var height = +(data.length * 2.5) + 100;
+		$(".timelineChart")
 			.highcharts({
 				chart: {
-					type: 'columnrange',
+					type: "columnrange",
 					inverted: true,
 					height: height
 				},
 				title: {
-					text: '',
+					text: "",
 					style: {
-						display: 'none'
+						display: "none"
 					}
 				},
 				subtitle: {
-					text: '',
+					text: "",
 					style: {
-						display: 'none'
+						display: "none"
 					}
 				},
 				scrollbar: {
 					enabled: true
 				},
 				xAxis: {
-					categories: ['Test Case']
+					categories: ["Test Case"]
 				},
 				yAxis: {
-					type: 'datetime',
+					type: "datetime",
 					title: {
-						text: 'Time'
+						text: "Time"
+					},
+					labels: {
+						rotation: -30,
+						style: {
+							fontSize: '10px',
+							fontFamily: 'Verdana, sans-serif'
+						}
 					}
 				},
 				plotOptions: {
@@ -79,14 +85,14 @@
 				},
 				tooltip: {
 					formatter: function () {
-						return '<b>' + this.point.options.id + ' - ' + this.point.options.title + '</b><br/>'
-							+ 'Started: ' + moment(this.point.low).format('LTS') + '<br/>'
-							+ 'Duration: ' + this.point.options.duration;
+						return "<b>" + this.point.options.id + " - " + this.point.options.title + "</b><br/>"
+							+ "Started: " + moment(this.point.low).format("LTS") + "<br/>"
+							+ "Duration: " + this.point.options.duration;
 					}
 				},
 				series: [
 					{
-						name: 'Test Case',
+						name: "Test Case",
 						borderWidth: 0,
 						data: data
 					}
