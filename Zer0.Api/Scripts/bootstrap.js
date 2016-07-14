@@ -1371,8 +1371,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
-    if ($e.attr('title') || typeof($e.attr('data-original-title')) != 'string') {
-      $e.attr('data-original-title', $e.attr('title') || '').attr('title', '')
+    if ($e.attr('title') || typeof($e.attr('data-original-q')) != 'string') {
+      $e.attr('data-original-title', $e.attr('q') || '').attr('q', '')
     }
   }
 
@@ -1535,7 +1535,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
     // this manually by checking the contents.
-    if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
+    if (!$tip.find('.popover-title').html()) $tip.find('.popover-q').hide()
   }
 
   Popover.prototype.hasContent = function () {

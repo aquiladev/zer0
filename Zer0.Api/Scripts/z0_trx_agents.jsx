@@ -1,4 +1,4 @@
-﻿var TestAgentsPerTestRun = React.createClass({
+﻿var TestAgentsPerTestRuns = React.createClass({
 	componentDidMount: function() {
 		this.renderChart();
 	},

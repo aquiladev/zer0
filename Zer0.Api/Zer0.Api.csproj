@@ -393,6 +393,8 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Models\TestRunItemModel.cs" />
     <Compile Include="Controllers\TestRunsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -455,6 +457,7 @@
     <Content Include="Scripts\z0_tc_agent.jsx" />
     <Content Include="Scripts\z0_tc_longest.jsx" />
     <Content Include="Scripts\z0_trx_agents.jsx" />
+    <Content Include="Scripts\z0_trx_tcx.jsx" />
     <None Include="Scripts\z0_tc_timeline.jsx" />
     <Content Include="Scripts\z0_tr.jsx" />
     <None Include="Scripts\z0_comment.jsx" />

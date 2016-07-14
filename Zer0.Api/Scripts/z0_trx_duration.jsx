@@ -10,18 +10,8 @@
 		var durations = [];
 		var calcDurations = [];
 
-		var runs = data.sort(function (a, b) {
-			if (a.id > b.id) {
-				return 1;
-			}
-			if (a.id < b.id) {
-				return -1;
-			}
-			return 0;
-		});
-
-		for (var i = 0; i < runs.length; i++) {
-			var run = runs[i];
+		for (var i = 0; i < data.length; i++) {
+			var run = data[i];
 			categories.push(run.id);
 
 			var duration = this.getDuration(run.dateStarted, run.dateCompleted).asMilliseconds();

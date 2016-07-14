@@ -182,13 +182,16 @@ textarea {
 .testRunItem {
 	background: #f1f1f1;
 	padding: 7px 10px;
-	cursor: pointer;
 	border-bottom: 1px solid #cdcdcd;
 }
 
-	.testRunItem:hover {
-		background: #fff;
+	.testRunItem.selectable {
+		cursor: pointer;
 	}
+
+		.testRunItem.selectable:hover {
+			background: #fff;
+		}
 
 	.testRunItem.active {
 		background: #fff;
@@ -218,6 +221,17 @@ textarea {
 		.testRunItem .testRunItemState.need-attention {
 			background: #ea2117;
 		}
+
+		.testRunItem .testRunItemState.loading-data {
+			width: 14px;
+			height: 14px;
+			margin-left: 2px;
+			background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -6929px -17px !important;
+		}
+
+	.testRunItem .testRunItemSelect {
+		width: 15px;
+	}
 
 .testRunDashboard {
 	border-top: 1px solid #cdcdcd;
