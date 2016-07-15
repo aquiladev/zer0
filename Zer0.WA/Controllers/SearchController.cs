@@ -32,7 +32,7 @@ namespace Zer0.Api.Controllers
 			}
 
 			return _project.TestRuns
-				.Query("SELECT * FROM TestRun WHERE title = '" + q + "'") //TODO: unsafe concatenation
+				.Query("SELECT * FROM TestRun WHERE title CONTAINS '" + q + "'") //TODO: unsafe concatenation
 				.OrderByDescending(r => r.DateCreated)
 				.Take(20)
 				.Select(r => new TestRunItemModel
