@@ -18,21 +18,23 @@
 	}
 });
 
-var TestRunItem = React.createClass({ //TODO: deprecated
-	onClick: function () {
+var TestRunItem = React.createClass({
+	onClick: function() {
 		this.props.onClick(this.props.data.id);
 	},
-	onSelect: function (event) {
+	onSelect: function(event) {
 		event.stopPropagation();
 		this.props.onSelect(this.props.data.id, event.target.checked);
 	},
-	getStateClass(state) {
+	getStateClass(item) {
 		var value;
-		if (state === "InProgress") {
+		if (!item.data) {
+			value = "loading-data";
+		} else if (item.data.state === "InProgress") {
 			value = "in-progress";
-		} else if (state === "Completed") {
+		} else if (item.data.state === "Completed") {
 			value = "completed";
-		} else if (state === "Waiting") {
+		} else if (item.data.state === "Waiting") {
 			value = "waiting";
 		} else {
 			value = "need-attention";
@@ -40,15 +42,19 @@ var TestRunItem = React.createClass({ //TODO: deprecated
 
 		return value;
 	},
-	render: function () {
-		var rootClass = "testRunItem" + (this.props.active ? " active" : "");
-		var stateClass = "testRunItemState " + this.getStateClass(this.props.data.state);
+	render: function() {
+		var rootClass = "testRunItem" + (this.props.data.data ? " selectable" : "") + (this.props.active ? " active" : "");
+		var stateClass = "testRunItemState " + this.getStateClass(this.props.data);
+		var checkbox = "";
+		if (this.props.data.data) {
+			checkbox = <input type="checkbox" onClick={this.onSelect} checked={this.props.checked } />;
+		}
 		return (
 			<div className={rootClass} id={this.props.data.id} onClick={this.onClick}>
 				<table>
 					<tbody>
 						<tr>
-							<td><input type="checkbox" onClick={this.onSelect} checked={this.props.checked} /></td>
+							<td><div className="testRunItemSelect">{checkbox}</div></td>
 							<td><div className={stateClass}></div></td>
 							<td>{this.props.data.id}: {this.props.data.title}</td>
 						</tr>
@@ -59,7 +65,7 @@ var TestRunItem = React.createClass({ //TODO: deprecated
 	}
 });
 
-var TestRunList = React.createClass({ //TODO: deprecated
+var TestRunList = React.createClass({
 	onClickItem: function (runId) {
 		if (this.state.selected.length) {
 			this.onSelectItem(runId, true);
@@ -134,128 +140,6 @@ var TestRunList = React.createClass({ //TODO: deprecated
 	}
 });
 
-var TestRunItemDesc = React.createClass({
-	onClick: function () {
-		this.props.onClick(this.props.data.id);
-	},
-	onSelect: function (event) {
-		event.stopPropagation();
-		this.props.onSelect(this.props.data.id, event.target.checked);
-	},
-	getStateClass(item) {
-		var value;
-		if (!item.data) {
-			value = "loading-data";
-		} else if (item.data.state === "InProgress") {
-			value = "in-progress";
-		} else if (item.data.state === "Completed") {
-			value = "completed";
-		} else if (item.data.state === "Waiting") {
-			value = "waiting";
-		} else {
-			value = "need-attention";
-		}
-
-		return value;
-	},
-	render: function () {
-		var rootClass = "testRunItem" + (this.props.data.data ? " selectable" : "") + (this.props.active ? " active" : "");
-		var stateClass = "testRunItemState " + this.getStateClass(this.props.data);
-		var checkbox = "";
-		if (this.props.data.data) {
-			checkbox = <input type="checkbox" onClick={this.onSelect} checked={this.props.checked } />;
-		}
-		return (
-			<div className={rootClass} id={this.props.data.id} onClick={this.onClick}>
-				<table>
-					<tbody>
-						<tr>
-							<td><div className="testRunItemSelect">{checkbox}</div></td>
-							<td><div className={stateClass}></div></td>
-							<td>{this.props.data.id}: {this.props.data.title}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		);
-	}
-});
-
-var TestRunListDynamic = React.createClass({
-	onClickItem: function (runId) {
-		if (this.state.selected.length) {
-			this.onSelectItem(runId, true);
-		} else {
-			this.setState({
-				active: runId
-			});
-			this.props.onTestRunSelect([runId]);
-		}
-	},
-	onSelectItem: function (runId, checked) {
-		var list = [];
-		if (checked) {
-			if (this.state.selected.indexOf(runId) > -1) {
-				return;
-			}
-			list = this.state.selected.concat([runId]);
-			this.setState({
-				selected: list,
-				active: 0
-			});
-		} else {
-			var index = this.state.selected.indexOf(runId);
-			if (index > -1) {
-				list = this.state.selected.slice();
-				list.splice(index, 1);
-				this.setState({
-					selected: list,
-					active: 0
-				});
-			}
-		}
-		this.props.onTestRunSelect(list);
-	},
-	onSelect: function (checked) {
-		var list = [];
-		if (checked) {
-			list = this.props.data.map(function (r) { return r.id; });
-		}
-		this.setState({
-			selected: list,
-			active: 0
-		});
-		this.props.onTestRunSelect(list);
-	},
-	getInitialState: function () {
-		return {
-			selected: [],
-			active: 0
-		}
-	},
-	render: function () {
-		var self = this;
-		var nodes = this.props.data.map(function (r, i) {
-			return (
-				<TestRunItemDesc data={r}
-								 key={i}
-								 onClick={self.onClickItem}
-								 onSelect={self.onSelectItem}
-								 active={r.id === self.state.active}
-								 checked={self.state.selected.indexOf(r.id) > -1} />
-			);
-		});
-		return (
-			<div className="testRunListDynamic">
-				<TestRunListControlPanel onSelect={this.onSelect} />
-				<div className="testRunListItems">
-					{nodes}
-				</div>
-			</div>
-		);
-	}
-});
-
 var TestRunDashboard = React.createClass({
 	render: function () {
 		var content = [];
@@ -291,19 +175,6 @@ var TestRunDashboard = React.createClass({
 });
 
 var TestRunBox = React.createClass({
-	get: function (queryText) {
-		var xhr = new XMLHttpRequest();
-		xhr.open("get", this.props.url + "?title=" + queryText, true);
-		xhr.onload = function () {
-			var data = JSON.parse(xhr.responseText);
-			this.setState({ data: data });
-		}.bind(this);
-		xhr.send();
-
-		this.setState({
-			query: queryText
-		});
-	},
 	search: function (queryText) {
 		var xhr = new XMLHttpRequest();
 		xhr.open("get", this.props.searchUrl + "?q=" + encodeURIComponent(queryText), true);
@@ -367,7 +238,6 @@ var TestRunBox = React.createClass({
 	getInitialState: function () {
 		return {
 			query: "",
-			data: [], //TODO: deprecated
 			items: [],
 			selected: [],
 			runs: []
@@ -379,7 +249,7 @@ var TestRunBox = React.createClass({
 				<SearchBox query={this.state.query} onSearch={this.search} placeholder="Title" />
 				<div className="row">
 					<div className="col-xs-3">
-						<TestRunListDynamic data={this.state.items} onTestRunSelect={this.testRunSelect} />
+						<TestRunList data={this.state.items} onTestRunSelect={this.testRunSelect} />
 					</div>
 					<div className="col-xs-9">
 						<TestRunDashboard data={this.state.runs} />

@@ -1,7 +1,6 @@
 ﻿var TestCasesFailures = React.createClass({
 	expand: function (e) {
 		var row = $(e.target).parents("tr");
-		console.log(row);
 		$(".testCasesFailures .details").hide();
 		if ($(e.target).hasClass("collapse")) {
 			$(e.target).removeClass("collapse");

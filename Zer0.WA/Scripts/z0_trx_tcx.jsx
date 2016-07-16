@@ -45,8 +45,6 @@
 	},
 	renderChart: function () {
 		var data = this.parse(this.props.data);
-		console.log();
-
 		$('.runsFailuresChart').highcharts({
 			chart: {
 				type: 'line',
