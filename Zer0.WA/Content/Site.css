@@ -226,7 +226,7 @@ textarea {
 			width: 14px;
 			height: 14px;
 			margin-left: 2px;
-			background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -6929px -17px !important;
+			background: transparent url('images/tfs-icons.png') no-repeat -6929px -17px !important;
 		}
 
 	.testRunItem .testRunItemSelect {
@@ -303,7 +303,7 @@ textarea {
 		width: 16px;
 		height: 16px;
 		margin-left: 2px;
-		background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -7984px -16px !important;
+		background: transparent url('images/tfs-icons.png') no-repeat -7984px -16px !important;
 	}
 
 	.testCasesFailures .expander .collapse {
@@ -311,5 +311,5 @@ textarea {
 		height: 16px;
 		margin-left: 2px;
 		display: block;
-		background: transparent url('https://tfs.eu.exactsoftware.com:8088/tfs/_static/tfs/Dev14.M95.4/_content/tfs-icons.png') no-repeat -8016px -16px !important;
+		background: transparent url('images/tfs-icons.png') no-repeat -8016px -16px !important;
 	}

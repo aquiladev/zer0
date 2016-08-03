@@ -51,6 +51,8 @@
 	renderChart: function () {
 		console.log("render cy");
 		var g1 = this.parse(this.props.data[0].results, this.props.data[0].id);
+		console.log(g1.nodes.map(function (i) { return i.data.title }));
+		
 		var g2 = this.parse(this.props.data[1].results, this.props.data[1].id, 100);
 		var g = this.merge(g1, g2);
 
@@ -59,7 +61,6 @@
 			var data = g.nodes[i].data;
 			positions[data.id] = data.position;
 		}
-		console.log(g);
 
 		var cy = cytoscape({
 			container: document.getElementById('cy'),
